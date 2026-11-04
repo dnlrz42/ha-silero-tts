@@ -1,0 +1,30 @@
+name: Silero TTS
+version: "1.1.0"
+slug: silero_tts
+description: Russian text-to-speech with Silero voices, via the Wyoming protocol (unofficial)
+url: https://github.com/dnlrz42/ha-silero-tts
+image: ghcr.io/dnlrz42/{arch}-silero-tts
+arch:
+  - amd64
+  - aarch64
+init: false
+boot: auto
+startup: services
+hassio_api: true
+discovery:
+  - wyoming
+watchdog: tcp://[HOST]:[PORT:10200]
+ports:
+  10200/tcp: null
+ports_description:
+  10200/tcp: Wyoming TTS (only needed for access from outside Home Assistant)
+options:
+  model: v5_ru
+  speaker: xenia
+  sample_rate: 48000
+  debug: false
+schema:
+  model: list(v5_ru|v4_ru)
+  speaker: list(xenia|baya|kseniya|aidar|eugene)
+  sample_rate: list(48000|24000|8000)
+  debug: bool
