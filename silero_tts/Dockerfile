@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.15-slim
 
 # CPU-only PyTorch; torch headers aren't needed to run the model
 COPY requirements.txt /tmp/
