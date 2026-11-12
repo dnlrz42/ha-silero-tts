@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
     paths: ["silero_tts/**", ".github/workflows/build.yaml"]
+  # Every PR runs the build: these checks are required to merge into main
   pull_request:
-    paths: ["silero_tts/**", ".github/workflows/build.yaml"]
   workflow_dispatch:
 
 permissions:
@@ -14,6 +14,7 @@ permissions:
 
 jobs:
   build:
+    name: build ${{ matrix.arch }}
     strategy:
       matrix:
         include:
@@ -25,7 +26,7 @@ jobs:
             runner: ubuntu-24.04-arm
     runs-on: ${{ matrix.runner }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Read version
         id: version
